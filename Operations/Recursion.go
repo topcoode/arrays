@@ -1,25 +1,56 @@
 package operations
 
-import "github.com/gin-gonic/gin"
+import (
+	"fmt"
 
-func Recursion(c *gin.Context) {
-	arr := []int{34, 45, 7, 12, 78}
-	target := 7
-	index := 0
-	Recursioned(arr, target, index)
+	"github.com/gin-gonic/gin"
+)
+
+func Recursion_main(c *gin.Context) {
+	i := 1
+	j := 3
+	Recursion(i, j)
+
+	//Printing the linearly 1,2,3,4
+	k := 1
+	f := 4
+	Print_Linerally(k, f)
+
+	// printing the back lineraly 4,3,2,1
+	e, p := 4, 4
+	Print_BackLineraly(e, p)
 
 }
-func Recursioned(arr []int, target int, index int) bool {
-	// Base case: if index is out of bounds
-	if index >= len(arr) {
-		return false
+func Recursion(i int, j int) int {
+	if i > j {
+		return 0
 	}
-
-	// Base case: if the target element is found
-	if arr[index] == target {
-		return true
+	fmt.Println("code")
+	return Recursion(i+1, j)
+}
+func Print_Linerally(i int, j int) int {
+	if i > j {
+		return 0
 	}
+	fmt.Println("-----------------")
+	/*
+		1,4
+		2,4
+		3,4
+		4,4
+		5,4 - not equal
+	*/
+	fmt.Println(i)
+	return Print_Linerally(i+1, j)
+}
 
-	// Recursive case: move to the next element
-	return Recursioned(arr, target, index+1)
+func Print_BackLineraly(i int, j int) {
+	if i < 1 {
+		return
+	}
+	/*
+	   4,4
+	*/
+	fmt.Println(i)
+	Print_BackLineraly(i-1, j)
 }
